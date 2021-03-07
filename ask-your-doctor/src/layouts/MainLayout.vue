@@ -11,7 +11,7 @@
           aria-label="Menu"
         />
         <q-toolbar-title>
-          Ask Your Doctor
+          AskDoctor.com
         </q-toolbar-title>
         <q-space/>
         <div class="q-gutter-sm row items-center no-wrap">
@@ -183,6 +183,14 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Chat Room</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item to="/BmiCalculator" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="list"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>BMI Calculator</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/Periodtracker" active-class="q-item-no-link-highlighting">

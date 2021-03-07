@@ -5,6 +5,8 @@ const routes = [
     children: [
       {path: '', component: () => import('pages/Dashboard.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Login', component: () => import('pages/Login.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
+      {path: '/Register', component: () => import('pages/Register.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
+      {path: '/BmiCalculator', component: () => import('pages/BmiCalculator.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Chatroom', component: () => import('pages/Chatroom.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Periodtracker', component: () => import('pages/Periodtracker.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Covid', component: () => import('pages/Covid.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},

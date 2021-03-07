@@ -31,12 +31,11 @@
                 v-model="password"
                 label="Password"
                 lazy-rules
-
               />
 
               <div>
-                <q-btn label="Login" @click="updatepassword" color="primary" />
-<!--                <q-btn label="Login" to="/" type="button" color="primary"/>-->
+                <q-btn label="Login" @click="verifyPassword" color="primary" />
+                <q-btn label="Register" to="/Register" type="button" color="primary"/>
               </div>
             </q-form>
           </q-card-section>
@@ -54,6 +53,14 @@
                 password: '12345'
             }
         },
+      methods: {
+        verifyPassword(){
+          console.log('Login Success')
+        },
+        registerAccount(){
+          console.log('Register Success')
+        },
+      }
     }
 </script>
 <style>

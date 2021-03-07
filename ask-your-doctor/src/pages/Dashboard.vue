@@ -1,23 +1,33 @@
 <template>
-  <q-page class="q-pa-sm">
+<!--  <q-page class="q-pa-sm">-->
+<!--    <card-social icon_position="left" />-->
 
-    <card-social icon_position="left" />
+<!--    <card-charts />-->
 
-    <card-charts />
+<!--    <div class="row q-col-gutter-sm  q-py-sm">-->
+<!--      <tab-social />-->
+<!--      <card-with-image />-->
+<!--    </div>-->
 
-    <div class="row q-col-gutter-sm  q-py-sm">
-      <tab-social />
-      <card-with-image />
+<!--    <div class="row q-col-gutter-sm  q-py-sm">-->
+<!--      <todo-list />-->
+
+<!--      <card-time-line />-->
+<!--    </div>-->
+
+<!--    <table-visits />-->
+<!--  </q-page>-->
+    <div class="q-pa-md q-gutter-md">
+      <div class="row justify-between">
+
+        <q-parallax style="height: 1000px"
+          src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2800&q=80"
+        >
+          <h1 class="text-white">AskDoctor: Your Virtual Health Manager</h1>
+        </q-parallax>
+
+      </div>
     </div>
-
-    <div class="row q-col-gutter-sm  q-py-sm">
-      <todo-list />
-
-      <card-time-line />
-    </div>
-
-    <table-visits />
-  </q-page>
 </template>
 
 <script>
