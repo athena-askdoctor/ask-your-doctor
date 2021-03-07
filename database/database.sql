@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `skkkzhan_athenahack2021_db`.`users` (
   `emergencycontact1` JSON NULL DEFAULT NULL,
   `emergencycontact2` JSON NULL DEFAULT NULL,
   `location` VARCHAR(45) NULL DEFAULT NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`userid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
