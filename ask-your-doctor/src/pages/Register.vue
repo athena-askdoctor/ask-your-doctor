@@ -79,15 +79,17 @@ export default {
       console.log('Login Success')
     },
     registerAccount(){
+      const that = this;
       axios.post( `../../assets/phpHelper/login.php`, {
         username: this.username,
         password: this.password
       })
-        .then((response) => {
+      .then((response) => {
           console.log(response);
-        }, (error) => {
-          console.log(error);
-        });
+          that.$router.push({path:'/Login'});
+      }, (error) => {
+        console.log(error);
+      });
       console.log('Register Success')
     },
   }
