@@ -1,14 +1,14 @@
 <template>
-  <q-page class="q-pa-sm">
+  <div class="q-pa-md">
     <div class="q-gutter-md row">
       <q-select
         filled
-        :value="userCountry"
+        :value="model"
         use-input
         hide-selected
         fill-input
         input-debounce="0"
-        :options="covidCountries"
+        :options="options"
         @filter="filterFn"
         @input-value="setModel"
         hint="Text autocomplete"
@@ -23,7 +23,7 @@
         </template>
       </q-select>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -35,67 +35,34 @@ import axios from "axios";
 
 const stringOptions = [
   'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
-]
-
+].reduce((acc, opt) => {
+  for (let i = 1; i <= 5; i++) {
+    acc.push(opt + ' ' + i)
+  }
+  return acc
+}, [])
 export default {
   data () {
     return {
-      covidData: null,
-      countryOptions: [],
-      userCountry: null,
-      options: stringOptions,
-      covidCountries: [],
-      covidUpdateTime: null,
-      model: null
+      model: null,
+      options: stringOptions
     }
   },
   mounted(){
-    var self = this;
-    const options = {
-      method: 'GET',
-      url: `http://192.168.31.12:3000/covid19?country=China` ,
-      params: {language: 'en-gb', format: 'json'},
-      headers: {
-        'Access-Control-Allow-Methods' : '*',
-        "Access-Control-Allow-Origin": "*"
-      }
-    };
-    axios.request(options).then(function (response) {
-      console.log('get covid info',response.data.data);
-      var tmpData = response.data.data;
-      tmpData = new Set(_.map(tmpData.covid19Stats, 'country'))
-      self.covidCountries = [...tmpData]
-      // self.covidCountries = new Set(...self.covidCountries)
-      // self.covidCountries = [...self.covidCountries]
-      console.log('covidCountries', self.covidCountries)
-      console.log('covidUpdateTime', self.covidUpdateTime)
-    }).catch(function (error) {
-      console.error(error);
-    });
+    var haha = getCovidInfo()
+    console.log('haha', haha)
   },
   watch: {
     model: () => {
-      var selff = this;
-      console.log('model changed!', selff.model)
-    },
-    userCountry: () => {
-      console.log('userCountry changed!', this.userCountry)
-    },
-    setModel: () => {
-      console.log('setModel changed!', this.setModel)
+      var self = this;
+      console.log('model changed!!!', self.model)
     }
-    // covidData: () => {
-    //   var self = this;
-    //   console.log('COUNTRY OPTIONS CHANGED!', self.covidData)
-    //   self.covidCountries = _.map(self.covidData['covid19Stats'], 'country')
-    //   console.log('covidCountries', self.covidCountries)
-    // }
   },
   methods: {
     filterFn (val, update, abort) {
       update(() => {
         const needle = val.toLocaleLowerCase()
-        this.options = this.covidCountries.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
+        this.options = stringOptions.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
       })
     },
     setModel (val) {
