@@ -3,8 +3,8 @@
     <q-btn label="Right"
            style="right: 20px; position: fixed; top: 700px; z-index: 1000;float: right;background-color: white;"
            icon="keyboard_arrow_right" color="yellow" @click="open('right')" />
-    <q-dialog v-model="dialog" :position="position">
-      <basic-vue-chat :title="'Your Personal Doctor'" :initial-feed="feed" style="height: 1000px"/>
+    <q-dialog class="background-color" v-model="dialog" :position="position">
+      <basic-vue-chat :title="'Your Personal Doctor'" :initial-feed="feed" class="background-color"/>
       <!--      <q-card style="width: 350px">-->
 <!--        <q-linear-progress :value="0.6" color="pink" />-->
 
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      dialog: '',
+      dialog: false,
       position: 'top',
       feed: [
         {
@@ -67,6 +67,10 @@ export default {
 // above the following import you can override default values of variables like $primary
 $dark-bg: black;
 $light-bg: white;
+
+#window__messages__container{
+  background-color: #00c6fb;
+}
 @import "./assets/scss/main.scss";
 </style>
 

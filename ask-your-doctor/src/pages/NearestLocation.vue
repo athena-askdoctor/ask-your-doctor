@@ -21,10 +21,10 @@
               v-model="coordinates"
               label="Enter your address"
               lazy-rules
-            ><q-btn label="Locate me!" @click="locatorButtonPressed" type="submit" color="primary"/></q-input>
+            ><q-btn label="Locate me!" @click="locatorButtonPressed" type="button" color="primary"/></q-input>
 <!--            <q-toggle v-model="accept" label="I accept the license and terms" />-->
             <div>
-              <q-btn label="Find Close-by Restaurant" type="submit" color="primary"/>
+              <q-btn label="Find Close-by Hospital" type="submit" color="primary"/>
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
             </div>
           </q-form>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
 name: "NearestLocation.vue",
   data() {
@@ -43,6 +44,7 @@ name: "NearestLocation.vue",
     type: 'restaurant',
     places: [],
     radius: "",
+    address: "",
     lat: 0,
     lng: 0,
     distanceGroup: '5',
@@ -68,21 +70,57 @@ name: "NearestLocation.vue",
   },
   computed: {
   coordinates() {
-    return `${this.lat}, ${this.lng}`;
+    return this.address;
+    // return `${this.lat}, ${this.lng}`;
   }
   },
   methods: {
-  locatorButtonPressed() {
-    navigator.geolocation.getC urrentPosition(
-      position => {
-        this.lat = position.coods.latitude;
-        this.lng = position.coords.longitude;
-      },
-      error => {
-        console.log('Error getting location');
+    async getStreetAddressFrom(lat, long) {
+      try {
+        var {
+          data
+        } = await axios.get(
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+          lat +
+          "," +
+          long +
+          "&key=AIzaSyCoU9gHx8I__cazm9Yf8F1t8auzcpWxZHk"
+        );
+        if (data.error_message) {
+          console.log(data.error_message)
+        } else {
+          this.address = data.results[0].formatted_address;
+          console.log('address', data.results[0].formatted_address)
+        }
+      } catch (error) {
+        console.log(error.message);
       }
-    );
-  }
+    },
+    locatorButtonPressed() {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+          this.getStreetAddressFrom(position.coords.latitude, position.coords.longitude)
+        },
+        error => {
+          console.log(error.message);
+        }
+      );
+    },
+
+  //
+  // locatorButtonPressed() {
+  //   navigator.geolocation.getCurrentPosition(
+  //     position => {
+  //       this.lat = position.coords.latitude;
+  //       this.lng = position.coords.longitude;
+  //     },
+  //     error =>{
+  //       console.error('Error getting location', error);
+  //     }
+  //   );
+  // }
   }
 }
 </script>
