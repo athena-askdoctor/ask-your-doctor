@@ -32,11 +32,13 @@
         </div>
       </div>
     </div>
+    <div id="map"></div>
   </div>
 </template>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoU9gHx8I__cazm9Yf8F1t8auzcpWxZHk&libraries=places&callback=initMap" async defer></script>
 <script>
 import axios from 'axios'
+var map;
 export default {
 name: "NearestLocation.vue",
   data() {
@@ -121,10 +123,81 @@ name: "NearestLocation.vue",
   //     }
   //   );
   // }
+    initMap() {
+  // Create the map.
+  var pyrmont = {
+    lat: 23.8701334,
+    lng: 90.2713944
+  };
+  if (navigator.geolocation) {
+    try {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pyrmont = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      });
+    } catch (err) {
+
+    }
+  }
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: pyrmont,
+    zoom: 17
+  });
+
+  // Create the places service.
+  var service = new google.maps.places.PlacesService(map);
+
+  // Perform a nearby search.
+  service.nearbySearch({
+      location: pyrmont,
+      radius: 4000,
+      type: ['hospital']
+    },
+    function(results, status, pagination) {
+      if (status !== 'OK') return;
+
+      createMarkers(results);
+      getNextPage = pagination.hasNextPage && function() {
+        pagination.nextPage();
+      };
+    });
+},createMarkers(places) {
+  var bounds = new google.maps.LatLngBounds();
+  for (var i = 0, place; place = places[i]; i++) {
+    var image = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
+
+    var marker = new google.maps.Marker({
+      map: map,
+      icon: image,
+      title: place.name,
+      position: place.geometry.location
+    });
+    bounds.extend(place.geometry.location);
+  }
+  map.fitBounds(bounds);
+}
   }
 }
 </script>
 
 <style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
+#map {
+  height: 500px;
+  margin: 10px auto;
+  width: 800px;
+}
 </style>
