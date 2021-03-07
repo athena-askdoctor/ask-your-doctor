@@ -16,6 +16,7 @@
         <q-space/>
         <div class="q-gutter-sm row items-center no-wrap">
           <q-btn color="deep-orange" to="/Covid" glossy label="COVID-19"></q-btn>
+          <q-btn color="deep-green" to="/Login" glossy label="Login"></q-btn>
           <q-btn round dense flat color="white" :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
                  @click="$q.fullscreen.toggle()"
                  v-if="$q.screen.gt.sm">
@@ -68,6 +69,7 @@
 <!--            <q-icon name="date_range"/>-->
 <!--          </q-item-section>-->
 <!--          <q-item-section>-->
+<!--            <q-item-label>Calendar</q-item-label>-->
 <!--            <q-item-label>Calendar</q-item-label>-->
 <!--          </q-item-section>-->
 <!--        </q-item>-->
@@ -311,6 +313,7 @@
 <script>
     import EssentialLink from 'components/EssentialLink'
     import Messages from "./Messages";
+    import user from '../store/module-example/user.js'
 
     export default {
         name: 'MainLayout',
@@ -323,6 +326,7 @@
         data() {
             return {
                 leftDrawerOpen: false,
+                user: user
             }
         }
     }

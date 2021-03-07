@@ -25,7 +25,6 @@
                 label="Username"
                 lazy-rules
               />
-
               <q-input
                 type="password"
                 filled
@@ -36,7 +35,8 @@
               />
 
               <div>
-                <q-btn label="Login" to="/" type="button" color="primary"/>
+                <q-btn label="Login" @click="updatepassword" color="primary" />
+<!--                <q-btn label="Login" to="/" type="button" color="primary"/>-->
               </div>
             </q-form>
           </q-card-section>
@@ -50,13 +50,12 @@
     export default {
         data() {
             return {
-                username: 'Pratik',
+                username: 'Tommy',
                 password: '12345'
             }
         },
     }
 </script>
-
 <style>
 
   .bg-image {

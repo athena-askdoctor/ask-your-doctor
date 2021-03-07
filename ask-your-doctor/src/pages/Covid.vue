@@ -1,5 +1,6 @@
 <template>
   <div class="q-pa-md">
+    <h1>COVID Dashboard</h1>
     <div class="q-gutter-md row">
       <q-select
         filled
@@ -45,18 +46,42 @@ export default {
   data () {
     return {
       model: null,
-      options: stringOptions
+      options: stringOptions,
+      covidData: []
     }
   },
   mounted(){
-    var haha = getCovidInfo()
-    console.log('haha', haha)
+    let self = this;
+    const options = {
+      method: 'GET',
+      url: `http://192.168.31.12:3000/covid19?country=China` ,
+      params: {language: 'en-gb', format: 'json'},
+      headers: {
+        'Access-Control-Allow-Methods' : '*',
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
+    axios.request(options).then(function (response) {
+      console.log('get covid info',response.data);
+      self.covidData = response.data;
+      console.log(self.covidData)
+    }).catch(function (error) {
+      console.error('error with getCovidData', error)
+    }.then(() => {
+      console.log('finished fetcing covid data')
+    }))
+  },
+  computed: {
+    model: () => {
+      console.log('model changed!!!')
+      return this.model
+    }
   },
   watch: {
-    model: () => {
-      var self = this;
-      console.log('model changed!!!', self.model)
-    }
+    // model: () => {
+    //   var self = this;
+    //   console.log('model changed!!!', self.model)
+    // }
   },
   methods: {
     filterFn (val, update, abort) {
