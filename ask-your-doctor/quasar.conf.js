@@ -3,6 +3,12 @@
 
 module.exports = function (ctx) {
   return {
+    htmlVariables: {
+      title: 'test name',
+      some: {
+        prop: 'my-prop'
+      }
+    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
@@ -71,6 +77,7 @@ module.exports = function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
+      index: 'hHAHAHAH',
       https: false,
       host: '192.168.31.12',
       port: 8890,
@@ -85,7 +92,6 @@ module.exports = function (ctx) {
     ssr: {
       pwa: false
     },
-
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'

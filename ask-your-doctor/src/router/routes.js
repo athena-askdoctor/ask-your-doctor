@@ -4,7 +4,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {path: '', component: () => import('pages/Dashboard.vue')},
-      {path: '/Chatroom', component: () => import('pages/Chatroom.vue')},
+      {path: '/Chatroom', component: () => import('pages/Chatroom.vue'), meta: { title: 'Skills - MyApp' }},
       {path: '/Periodtracker', component: () => import('pages/Periodtracker.vue')},
       {path: '/Covid', component: () => import('pages/Covid.vue')},
       {path: '/Dashboard2', component: () => import('pages/Dashboard2.vue')},
