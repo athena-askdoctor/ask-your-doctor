@@ -26,6 +26,7 @@
     "vue-echarts-v3": "^2.0.1",
     "vue-i18n": "^8.0.0",
     "vue-quick-chat": "^1.2.8",
+    "vue2-google-maps": "^0.10.7",
     "vuedraggable": "^2.23.2"
   },
   "devDependencies": {

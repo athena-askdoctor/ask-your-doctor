@@ -1,5 +1,10 @@
 <template>
   <q-page class="q-pa-sm bg-white">
+        <div class="q-pb-sm">
+          Model: {{ pickedDate }}
+        </div>
+
+        <q-date v-model="pickedDate" range />
     <q-calendar
       v-model="selectedDate"
       view="month"
@@ -43,7 +48,9 @@ export default {
     name: 'Calendar',
     data() {
         return {
-            selectedDate: '',
+          pickedDate: null,
+          selectedDate: this.pickedDate,
+            // selectedDate: '2020-12-21',
             events: [
                 {
                     title: '1st of the Month',

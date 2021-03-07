@@ -11,7 +11,7 @@
           aria-label="Menu"
         />
         <q-toolbar-title>
-          AskDoctor.com
+          AskDocto
         </q-toolbar-title>
         <q-space/>
         <div class="q-gutter-sm row items-center no-wrap">
@@ -21,9 +21,9 @@
                  @click="$q.fullscreen.toggle()"
                  v-if="$q.screen.gt.sm">
           </q-btn>
-          <q-btn round dense flat color="white" icon="fab fa-github" type="a" href="https://github.com/pratik227/quasar-admin" target="_blank">
+          <q-btn round dense flat color="white" icon="fab fa-github" type="a" href="https://github.com/athena-askdoctor/ask-your-doctor" target="_blank">
           </q-btn>
-          <q-btn round dense flat icon="fas fa-heart" style="color:#9d4182 !important;" type="a" href="https://github.com/sponsors/pratik227" target="_blank">
+          <q-btn round dense flat icon="fas fa-heart" style="color:#9d4182 !important;" type="a" href="http://breastcancernow.org/" target="_blank">
           </q-btn>
           <q-btn round dense flat color="white" icon="notifications">
             <q-badge color="red" text-color="white" floating>
@@ -199,6 +199,14 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Period Tracker</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item to="/HospitalFinder" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="list"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Hospital Finder</q-item-label>
           </q-item-section>
         </q-item>
 <!--        <q-item to="/TreeTable" active-class="q-item-no-link-highlighting">-->

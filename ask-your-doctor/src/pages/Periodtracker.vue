@@ -1,5 +1,10 @@
 <template>
   <q-page class="q-pa-sm bg-white">
+    <div class="q-pb-sm">
+      Model: {{ pickedDate }}
+    </div>
+
+    <q-date v-model="pickedDate" range />
     <q-calendar
       v-model="selectedDate"
       view="month"
@@ -43,7 +48,12 @@ export default {
   name: 'Periodtracker',
   data() {
     return {
-      selectedDate: '',
+      pickedDate: {
+        'from': "2021/03/07",
+        'to':  "2021/03/11"
+      },
+      selectedDate: '2021/02/08',
+      month: 11,
       events: [
         {
           title: '1st of the Month',
@@ -108,6 +118,12 @@ export default {
           icon: 'flight'
         }
       ]
+    }
+  },
+  watch: {
+    pickedDate(){
+      var self = this;
+      console.log('pickedDate changed!', self.pickedDate)
     }
   },
   methods: {
