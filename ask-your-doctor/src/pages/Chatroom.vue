@@ -88,6 +88,7 @@
 
 <script>
 import moment from 'moment'
+import {getRequesthaha, symptomCheckRequest,getCovidInfo} from '../helpers/request.js'
 export default {
   name: "Chatroom",
   components: {
@@ -129,6 +130,15 @@ export default {
         },
       ]
     }
+  },
+  created() {
+    console.log('CREATED');
+    // getRequesthaha('https://covid19-api.weedmark.systems/api/v1/stats?country=Canada');
+    // symptomCheckRequest();
+    getCovidInfo();
+  },
+  methods: {
+
   }
 }
 </script>
