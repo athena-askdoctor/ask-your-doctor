@@ -2,7 +2,9 @@
 
 require "config.php";
 
-if ( (isset($_POST["username"]) && !empty($_POST["username"])) && (isset($_POST["name"]) && !empty($_POST["name"])) && (isset($_POST["password"]) && !empty($_POST["password"])) && (isset($_POST["isDoctor"]) && !empty($_POST["isDoctor"])) ) {
+$data = json_decode(file_get_contents("php://input"), TRUE);
+
+if ( (isset($data["username"]) && !empty($data["username"])) && (isset($data["name"]) && !empty($data["name"])) && (isset($data["password"]) && !empty($data["password"])) && (isset($data["isDoctor"]) && (!empty($data["isDoctor"]) || ($data["isDoctor"] == 0) ) ) ) {
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	if ( $mysqli->connect_errno ) {
 		echo $mysqli->connect_error;
@@ -12,7 +14,7 @@ if ( (isset($_POST["username"]) && !empty($_POST["username"])) && (isset($_POST[
 	// check unique username
 	$statement = $mysqli->prepare("SELECT * FROM users WHERE username = ?");
 
-	$statement->bind_param("s", $_POST["username"]);
+	$statement->bind_param("s", $data["username"]);
 	$executed = $statement->execute();
 	if(!$executed) {
 		echo $mysqli->error;
@@ -22,9 +24,9 @@ if ( (isset($_POST["username"]) && !empty($_POST["username"])) && (isset($_POST[
 		echo "Usernmae Exists!";
 	} else {
 		// hash password
-		$password = hash("sha256", $_POST["password"]);
+		$password = hash("sha256", $data["password"]);
 		$statement = $mysqli->prepare("INSERT INTO users(username, name, isDoctor, password) VALUES(?, ?, ?, ?)");
-		$statement->bind_param("ssis", $_POST["username"], $_POST["name"], $_POST["isDoctor"], $password);
+		$statement->bind_param("ssis", $data["username"], $data["name"], $data["isDoctor"], $password);
 		$executed = $statement->execute();
 		if(!$executed) {
 			echo $mysqli->error;

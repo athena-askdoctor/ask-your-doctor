@@ -1,4 +1,15 @@
-LogIn();
+//LogIn();
+
+axios.post('../login.php', {
+	username: encodeURIComponent("username"),
+	password: encodeURIComponent(1234567890)
+})
+.then(function (response) {
+	console.log(response.data);
+})
+.catch(function (error) {
+	console.log(error);
+});
 
 function isJson(json) {
 	try {
