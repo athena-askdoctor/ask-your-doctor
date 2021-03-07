@@ -209,6 +209,14 @@
             <q-item-label>Hospital Finder</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item to="/NearestLocation" active-class="q-item-no-link-highlighting">
+          <q-item-section avatar>
+            <q-icon name="list"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Nearest Location</q-item-label>
+          </q-item-section>
+        </q-item>
 <!--        <q-item to="/TreeTable" active-class="q-item-no-link-highlighting">-->
 <!--          <q-item-section avatar>-->
 <!--            <q-icon name="list"/>-->

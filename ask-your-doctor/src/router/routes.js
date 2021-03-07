@@ -8,6 +8,7 @@ const routes = [
       {path: '/Register', component: () => import('pages/Register.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Login', component: () => import('pages/Login.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/HospitalFinder', component: () => import('pages/HospitalFinder.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
+      {path: '/NearestLocation', component: () => import('pages/NearestLocation.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/BmiCalculator', component: () => import('pages/BmiCalculator.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Chatroom', component: () => import('pages/Chatroom.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
       {path: '/Periodtracker', component: () => import('pages/Periodtracker.vue'), meta: { title: 'Skills - MyApp', allowAnonymous: true }},
