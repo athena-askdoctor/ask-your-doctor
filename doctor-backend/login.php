@@ -25,7 +25,7 @@ if( (isset($data["username"]) && !empty($data["username"])) && (isset($data["pas
 		$results_array = array("userid"=>$user["userid"], "name"=>$user["name"], "username"=>$user["username"], "avatar"=>$user["avatar"], "isDoctor"=>$user["isDoctor"], "emergencycontact1"=>$user["emergencycontact1"], "emergencycontact2"=>$user["emergencycontact2"], "location"=>$user["location"]);
 		echo json_encode($results_array);
 	} else {
-		$error = "Invalid username or password.";
+		echo "Invalid username or password.";
 	}
 
 	$statement->close();

@@ -4,7 +4,7 @@ require "config.php";
 
 $data = json_decode(file_get_contents("php://input"), TRUE);
 
-if ( (isset($data["username"]) && !empty($data["username"])) && (isset($data["name"]) && !empty($data["name"])) && (isset($data["password"]) && !empty($data["password"])) && (isset($data["isDoctor"]) && (!empty($data["isDoctor"]) || ($data["isDoctor"] == 0) ) ) ) {
+if ( (isset($data["username"]) && !empty($data["username"])) && (isset($data["name"]) && !empty($data["name"])) && (isset($data["password"]) && !empty($data["password"])) && (isset($data["isDoctor"]) && (!empty($data["isDoctor"]) || ($data["isDoctor"] == 0))) && (isset($data["location"]) && !empty($data["location"])) ) {
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	if ( $mysqli->connect_errno ) {
 		echo $mysqli->connect_error;
@@ -25,8 +25,8 @@ if ( (isset($data["username"]) && !empty($data["username"])) && (isset($data["na
 	} else {
 		// hash password
 		$password = hash("sha256", $data["password"]);
-		$statement = $mysqli->prepare("INSERT INTO users(username, name, isDoctor, password) VALUES(?, ?, ?, ?)");
-		$statement->bind_param("ssis", $data["username"], $data["name"], $data["isDoctor"], $password);
+		$statement = $mysqli->prepare("INSERT INTO users(username, name, isDoctor, password, location) VALUES(?, ?, ?, ?, ?)");
+		$statement->bind_param("ssiss", $data["username"], $data["name"], $data["isDoctor"], $password, $data["location"]);
 		$executed = $statement->execute();
 		if(!$executed) {
 			echo $mysqli->error;

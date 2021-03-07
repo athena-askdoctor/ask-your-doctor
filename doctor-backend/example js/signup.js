@@ -1,9 +1,10 @@
 // //register();
 axios.post('../signup.php', {
-	username: encodeURIComponent("testuser"),
+	username: encodeURIComponent("test2"),
 	name: encodeURIComponent("whoever"),
 	isDoctor: 0,
-	password: encodeURIComponent(1234567890)
+	password: encodeURIComponent(1234567890),
+	location: "Africa"
 })
 .then(function (response) {
 	console.log(response.data);

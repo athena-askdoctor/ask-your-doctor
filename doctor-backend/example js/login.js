@@ -1,8 +1,8 @@
 //LogIn();
 
 axios.post('../login.php', {
-	username: encodeURIComponent("username"),
-	password: encodeURIComponent(1234567890)
+	username: encodeURIComponent("test2"),
+	password: encodeURIComponent("0123456789")
 })
 .then(function (response) {
 	console.log(response.data);
