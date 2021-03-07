@@ -80,7 +80,7 @@ export default {
     },
     registerAccount(){
       const that = this;
-      axios.post( `../../assets/phpHelper/login.php`, {
+      axios.post( `http://127.0.0.1/signup.php`, {
         username: this.username,
         password: this.password
       })
