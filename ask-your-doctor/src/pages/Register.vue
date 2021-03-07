@@ -31,6 +31,7 @@
           <q-card-section>
             <q-form
               class="q-gutter-md"
+              @submit="registerAccount"
             >
               <q-input
                 filled
@@ -66,6 +67,8 @@
 </template>
 
 <script>
+import axios from "axios";
+    import Router from '../router';
 export default {
   data() {
     return {
@@ -76,17 +79,23 @@ export default {
   },
   methods: {
     verifyPassword(){
-      console.log('Login Success')
+      
     },
     registerAccount(){
       const that = this;
       axios.post( `http://127.0.0.1/signup.php`, {
         username: this.username,
-        password: this.password
+        password: this.password,
+        name: "testing", //this.name,
+        isDoctor: "0",//this.isDoctor,
+        location: "United States"//this.location
       })
       .then((response) => {
-          console.log(response);
-          that.$router.push({path:'/Login'});
+          if (response.data == "success") {
+            that.$router.push({path:'/Login'});
+          } else {
+            alert(response.data);
+          }
       }, (error) => {
         console.log(error);
       });

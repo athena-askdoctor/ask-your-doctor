@@ -75,8 +75,8 @@
           .then(function (response) {
             if (typeof response.data["userid"] != "undefined") {
                 
-                that.$router.replace({path:'/', component: () => import('pages/Dashboard.vue'), }
-                });
+                that.$router.replace({path:'/', component: () => import('pages/Dashboard.vue') }
+                );
                 // props:{
                 //   userid: response.data["userid"],
                 //   name: response.data["name"],
