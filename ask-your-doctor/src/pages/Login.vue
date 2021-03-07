@@ -51,13 +51,20 @@
 <script>
     import axios from "axios";
     import Router from '../router';
+    import user from '../store/module-example/user.js'
+    
     export default {
-        data() {
-            return {
-                username: 'test2',
-                password: '0123456789'
-            }
-        },
+      data() {
+        return {
+          username: 'test2',
+          password: '0123456789'
+        }
+      },
+      computed: {
+         setState (e) {
+           this.$store.commit('user/setState', e)
+           }
+      },
       methods: {
         verifyPassword(){
           console.log('Login Success')
@@ -74,18 +81,19 @@
           })
           .then(function (response) {
             if (typeof response.data["userid"] != "undefined") {
-                
-                that.$router.replace({path:'/', component: () => import('pages/Dashboard.vue') }
-                );
-                // props:{
-                //   userid: response.data["userid"],
-                //   name: response.data["name"],
-                //   username: response.data["username"],
-                //   avatar: response.data["avatar"],
-                //   isDoctor: response.data["isDoctor"],
-                //   emergencycontact1: response.data["emergencycontact1"],
-                //   emergencycontact2: response.data["emergencycontact2"],
-                //   location: response.data["location"]
+                let props = {
+                  userid: response.data["userid"],
+                  name: response.data["name"],
+                  username: response.data["username"],
+                  avatar: response.data["avatar"],
+                  isDoctor: response.data["isDoctor"],
+                  emergencycontact1: response.data["emergencycontact1"],
+                  emergencycontact2: response.data["emergencycontact2"],
+                  location: response.data["location"],
+                  isLoggedIn: true
+                }
+                that.$store.commit('user/setState', props);
+                that.$router.replace({path:'/', component: () => import('pages/Dashboard.vue') });
                 
             } else {
               alert("Incorrect Username or password!");
